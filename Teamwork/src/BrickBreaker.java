@@ -35,7 +35,7 @@ public class BrickBreaker extends JPanel implements KeyListener,
     // variables declaration for brick...............................
     // ===============================================================
     // declaring ball, paddle,bricks
-    Rectangle Ball = new Rectangle(ballx, bally, 25, 25);
+    Rectangle Ball = new Rectangle(ballx, bally, 50, 50);
     Rectangle Bat = new Rectangle(batx, baty, 150, 20);
     // Rectangle Brick;// = new Rectangle(brickx, bricky, 30, 10);
     Rectangle[] Brick = new Rectangle[18];
@@ -68,10 +68,19 @@ public class BrickBreaker extends JPanel implements KeyListener,
     public void paint(Graphics g) {
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, 800, 600);
-        g.setColor(Color.blue);
-        g.fillOval(Ball.x, Ball.y, Ball.width, Ball.height);
-        g.setColor(Color.blue);
-        g.fill3DRect(Bat.x, Bat.y, Bat.width, Bat.height, true);
+        //g.setColor(Color.blue);
+        //g.fillOval(Ball.x, Ball.y, Ball.width, Ball.height);
+        ImageIcon ic = new ImageIcon(getClass().getResource("/images/balll.png"));
+        Image ball = ic.getImage();
+        g.drawImage(ball, Ball.x, Ball.y, Ball.width, Ball.height, null);
+        
+        
+        //g.setColor(Color.blue);
+        //g.fill3DRect(Bat.x, Bat.y, Bat.width, Bat.height, true);
+        ic = new ImageIcon(getClass().getResource("/images/bat.png"));
+        Image bat = ic.getImage();
+        g.drawImage(bat, Bat.x, Bat.y, Bat.width, Bat.height, null);
+        
         g.setColor(Color.GRAY);
         g.fillRect(0, 800, 800, 600);
         g.setColor(Color.red);
@@ -79,8 +88,11 @@ public class BrickBreaker extends JPanel implements KeyListener,
         g.drawString(finalScore, 20, 535);
         for (int i = 0; i < Brick.length; i++) {
             if (Brick[i] != null) {
-                g.fill3DRect(Brick[i].x, Brick[i].y, Brick[i].width,
-                        Brick[i].height, true);
+                //g.fill3DRect(Brick[i].x, Brick[i].y, Brick[i].width,
+                 //       Brick[i].height, true);
+            	ic = new ImageIcon(getClass().getResource("/images/brick.png"));
+            	Image brick = ic.getImage();
+            	g.drawImage(brick, Brick[i].x, Brick[i].y, Brick[i].width, Brick[i].height, null);
             }
         }
 
