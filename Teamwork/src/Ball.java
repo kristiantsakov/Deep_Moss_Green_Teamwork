@@ -1,9 +1,12 @@
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
 
 public class Ball {
 	//The Diameter of the ball.
-	private static final int DIAMETER = 30;
+	private static final int DIAMETER = 50;
 	//Coordinates x and y of the ball.
 	int x = 0;
 	int y = 0;
@@ -42,7 +45,10 @@ public class Ball {
 
 	//Drawing the ball.
 	public void paint(Graphics2D g) {
-		g.fillOval(x, y, DIAMETER, DIAMETER);
+		//g.fillOval(x, y, DIAMETER, DIAMETER);
+		ImageIcon ic = new ImageIcon(getClass().getResource("/images/ball.gif"));
+		Image img = ic.getImage();
+		g.drawImage(img, x, y, null);
 	}
 
 	//Geting the bounds of the board to make the collision.
