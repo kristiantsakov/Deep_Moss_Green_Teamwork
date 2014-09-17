@@ -37,7 +37,6 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 	// declaring ball, paddle,bricks
 	Rectangle Ball = new Rectangle(ballx, bally, 30, 30);
 	Rectangle Bat = new Rectangle(batx, baty, 150, 20);
-	// Rectangle Brick;// = new Rectangle(brickx, bricky, 30, 10);
 	Rectangle[] Brick = new Rectangle[18];
 	Thread t;
 
@@ -69,19 +68,19 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 	public void paint(Graphics g) {
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, 800, 600);
-		// g.setColor(Color.blue);
-		// g.fillOval(Ball.x, Ball.y, Ball.width, Ball.height);
+		
+		// Drawing Ball
 		ImageIcon ic = new ImageIcon(getClass()
 				.getResource("/images/balll.png"));
 		Image ball = ic.getImage();
 		g.drawImage(ball, Ball.x, Ball.y, Ball.width, Ball.height, null);
 
-		// g.setColor(Color.blue);
-		// g.fill3DRect(Bat.x, Bat.y, Bat.width, Bat.height, true);
+		// Drawing Bat
 		ic = new ImageIcon(getClass().getResource("/images/bat.png"));
 		Image bat = ic.getImage();
 		g.drawImage(bat, Bat.x, Bat.y, Bat.width, Bat.height, null);
 
+		// Drawing Bricks
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 800, 800, 600);
 		g.setColor(Color.red);
@@ -89,15 +88,14 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 		g.drawString(finalScore, 20, 535);
 		for (int i = 0; i < Brick.length; i++) {
 			if (Brick[i] != null) {
-				// g.fill3DRect(Brick[i].x, Brick[i].y, Brick[i].width,
-				// Brick[i].height, true);
 				ic = new ImageIcon(getClass().getResource("/images/brick.png"));
 				Image brick = ic.getImage();
 				g.drawImage(brick, Brick[i].x, Brick[i].y, Brick[i].width,
 						Brick[i].height, null);
 			}
 		}
-
+		
+		// When game ends
 		if (ballFallDown == true || bricksOver == true) {
 			Font f = new Font("Arial", Font.BOLD, 20);
 			g.setFont(f);
@@ -143,6 +141,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 		// ===========BRICKS created for the game new ready to use===
 
 		// ====================================================
+		
 		// == ball reverses when touches the brick=======
 
 		while (ballFallDown == false && bricksOver == false) {
@@ -150,12 +149,11 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 			for (int i = 0; i < Brick.length; i++) {
 				if (Brick[i] != null) {
 					if (Brick[i].intersects(Ball)) {
-						// here the ball breaks the brick
+						// Here the ball breaks the brick
 						score += 10;
 						finalScore = "YOUR SCORE: " + score;
 						speed += 0.3;
 						Brick[i] = null;
-						// movex = -movex;
 						movey = -movey;
 						count++;
 					}// end of 2nd if..
