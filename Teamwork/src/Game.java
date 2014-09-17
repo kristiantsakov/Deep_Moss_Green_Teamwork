@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -68,7 +69,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 	public void paint(Graphics g) {
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, 800, 600);
-		
+
 		// Drawing Ball
 		ImageIcon ic = new ImageIcon(getClass()
 				.getResource("/images/balll.png"));
@@ -94,7 +95,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 						Brick[i].height, null);
 			}
 		}
-		
+
 		// When game ends
 		if (ballFallDown == true || bricksOver == true) {
 			Font f = new Font("Arial", Font.BOLD, 20);
@@ -141,7 +142,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 		// ===========BRICKS created for the game new ready to use===
 
 		// ====================================================
-		
+
 		// == ball reverses when touches the brick=======
 
 		while (ballFallDown == false && bricksOver == false) {
@@ -155,6 +156,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 						speed += 0.3;
 						Brick[i] = null;
 						movey = -movey;
+						Sounds.BALLBRICK.play();
 						count++;
 					}// end of 2nd if..
 				}// end of 1st if..
@@ -165,6 +167,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 			if (count == Brick.length) {// check if ball hits all bricks
 				bricksOver = true;
 				status = "YOU WON THE GAME";
+				Sounds.WIN.play();
 				repaint();
 			}
 			// /////////// =================================
@@ -189,18 +192,22 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 			// /===== Ball reverses when strikes the bat
 			if (Ball.intersects(Bat)) {
 				movey = -movey;
+				Sounds.BALLWALL.play();
 				// if(Ball.y + Ball.width >=Bat.y)
 			}
 			// //=====================================
 			// ....ball reverses when touches left and right boundary
 			if (Ball.x <= 0 || Ball.x + Ball.height >= 800) {
 				movex = -movex;
+				Sounds.BALLWALL.play();
 			}// if ends here
 			if (Ball.y <= 0) {// ////////////////|| bally + Ball.height >= 250
 				movey = -movey;
+				Sounds.BALLWALL.play();
 			}// if ends here.....
 			if (Ball.y >= 525) {// when ball falls below bat game is over...
 				ballFallDown = true;
+				Sounds.GAMEOVER.play();
 				status = "YOU LOST THE GAME";
 				repaint();
 				// System.out.print("game");
