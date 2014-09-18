@@ -123,7 +123,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 	int score = 0;
 	double speed = 0;
 	String status;
-	String finalScore;
+	String finalScore = "YOUR SCORE: 0";
 
 	public void run() {
 
@@ -218,6 +218,7 @@ public class Game extends JPanel implements KeyListener, ActionListener,
 			try {
 				Thread.sleep((long) (8 - speed));
 			} catch (Exception ex) {
+				System.out.println(" ");
 			}// try catch ends here
 
 		}// while loop ends here
